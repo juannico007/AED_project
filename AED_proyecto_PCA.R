@@ -21,7 +21,6 @@ vals = cov_eigen$values
 #Sino, toda la variabilidad recaeria sobre el PIB
 PCA <-princomp(scale(Data))
 summary(PCA)
-
 var <- get_pca_var(PCA)
 cont = var$contrib
 view(cont)
@@ -32,9 +31,9 @@ view(cont)
 #Con 3 componentes principales explicamos un 81% de la variabilidad
 
 #Plots de correlación de las variables con cada componente principal junto con su contribución a las mismas
-fviz_pca_var(PCA, axes = c(1,2), col.var = "contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
-fviz_pca_var(PCA, axes = c(1,3), col.var = "contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
-fviz_pca_var(PCA, axes = c(2,3), col.var = "contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
+fviz_pca_var(PCA, axes = c(1,2), col.var = "contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)+labs(title ="Correlación de variables con componentes principales", x = "PC2", y = "PC1")
+fviz_pca_var(PCA, axes = c(1,3), col.var = "contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)+labs(title ="Correlación de variables con componentes principales", x = "PC3", y = "PC1")
+fviz_pca_var(PCA, axes = c(2,3), col.var = "contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)+labs(title ="Correlación de variables con componentes principales", x = "PC3", y = "PC2")
 
 #DE LA PRIMERA GRAFICA
 #Sobre la primera componente podemos ver que el IDH, la tasa de natalidad y el índice de fecundidad tienen una magnitud
@@ -54,5 +53,3 @@ fviz_pca_ind(PCA, axes = c(1,3), geom.ind = "point", col.ind = idh$Tipo, palette
 fviz_pca_ind(PCA, axes = c(2,3), geom.ind = "point", col.ind = idh$Tipo, palette = c("#00AFBB", "#E7B800", "#FC4E07"), addEllipses = TRUE, legend.title = "Groups") 
 
 fviz_pca_ind(PCA, axes = c(1,2), geom.ind = "point", col.ind = idh$Continente, palette = c("#00AFBB", "#E7B800", "#FC4E07","#FB4EE7", "#AC4ED7", "#FC8E0F" ), addEllipses = TRUE, legend.title = "Grupos")
-
-ind <- get_pca_ind(PCA)
